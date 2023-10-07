@@ -44,3 +44,22 @@
 // nums is sorted in non-decreasing order.
 
 // https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function (nums) {
+  if (nums.length === 0) return 0; // Handle the edge case of an empty array
+
+  let k = 1; // Initialize a pointer for the new length of the array
+
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] !== nums[i - 1]) {
+      nums[k] = nums[i]; // Move unique elements to the front
+      k++; // Increment the new length pointer
+    }
+  }
+
+  return k; // k represents the new length of the array with unique elements
+};
