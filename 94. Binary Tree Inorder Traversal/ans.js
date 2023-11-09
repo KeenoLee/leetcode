@@ -26,17 +26,17 @@
 
 // https://leetcode.com/problems/binary-tree-inorder-traversal/
 
-// var inorderTraversal = function(root) {
-//   const result = [];
+var inorderTraversal = function (root) {
+  const result = [];
 
-// function traverse(node) {
-// if (!node) return;
+  function traverse(node) {
+    if (!node) return;
 
-// traverse(node.left);
-// result.push(node.val);
-// traverse(node.right);
-// }
+    traverse(node.left);
+    result.push(node.val);
+    traverse(node.right);
+  }
 
-// traverse(root);
-// return result;
-// };
+  traverse(root);
+  return result;
+};
