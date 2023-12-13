@@ -86,7 +86,7 @@
 -- | 13         | John         | Physics      | 1              |
 -- | 13         | John         | Programming  | 1              |
 -- +------------+--------------+--------------+----------------+
--- Explanation:  
+-- Explanation: 
 -- The result table should contain all students and all subjects.
 -- Alice attended the Math exam 3 times, the Physics exam 2 times, and the Programming exam 1 time.
 -- Bob attended the Math exam 1 time, the Programming exam 1 time, and did not attend the Physics exam.
@@ -94,16 +94,3 @@
 -- John attended the Math exam 1 time, the Physics exam 1 time, and the Programming exam 1 time.
 -- https://leetcode.com/problems/students-and-examinations/description/?envType=study-plan-v2&envId=top-sql-50
 # Write your MySQL query statement below
-SELECT S.student_id,
-  S.student_name,
-  Su.subject_name,
-  COUNT(E.subject_name) AS attended_exams
-FROM Students S
-  CROSS JOIN Subjects Su
-  LEFT JOIN Examinations E ON S.student_id = E.student_id
-  AND Su.subject_name = E.subject_name
-GROUP BY S.student_id,
-  S.student_name,
-  Su.subject_name
-ORDER BY S.student_id,
-  Su.subject_name;
