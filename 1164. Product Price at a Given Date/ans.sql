@@ -40,14 +40,16 @@
 -- +------------+-------+
 -- https://leetcode.com/problems/product-price-at-a-given-date/description/?envType=study-plan-v2&envId=top-sql-50
 # Write your MySQL query statement below
-SELECT product_id,
-  COALESCE(
-    MAX(
-      CASE
-        WHEN change_date <= '2019-08-16' THEN new_price
-      END
-    ),
-    10
-  ) AS price
-FROM Products
-GROUP BY product_id;
+SELECT p1.product_id,
+  COALESCE(p2.new_price, 10) AS price
+FROM (
+    SELECT DISTINCT product_id
+    FROM Products
+  ) p1
+  LEFT JOIN Products p2 ON p1.product_id = p2.product_id
+  AND p2.change_date = (
+    SELECT MAX(change_date)
+    FROM Products
+    WHERE product_id = p1.product_id
+      AND change_date <= '2019-08-16'
+  );
