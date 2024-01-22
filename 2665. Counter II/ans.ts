@@ -91,6 +91,7 @@ function createCounter(init: number): Counter {
 // Rather than returning a normal object, we can return a Proxy which emulates the behavior of an object with methods. We can do this by listening to all property access (get) events and if the requested key matches the name of a method, perform the appropriate logic.
 
 // Note that this solution is primarily for demonstration purposes. Proxies are a very powerful tool and their use should be reserved for situations that absolutely require them.
+
 var createCounter = function (init: number) {
   let currentCount = init;
   return new Proxy(
