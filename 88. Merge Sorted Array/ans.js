@@ -1,3 +1,5 @@
+// 88. Merge Sorted Array
+
 // You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.
 
 // Merge nums1 and nums2 into a single array sorted in non-decreasing order.
@@ -34,54 +36,9 @@
 
 // Follow up: Can you come up with an algorithm that runs in O(m + n) time?
 
-function merge(nums1, m, nums2, n) {
-  const merged = new Array(m + n);
-  let p1 = m - 1;
-  let p2 = n - 1;
-  let p = m + n - 1;
-
-  while (p1 >= 0 && p2 >= 0) {
-    if (nums1[p1] > nums2[p2]) {
-      merged[p] = nums1[p1];
-      p1--;
-    } else {
-      merged[p] = nums2[p2];
-      p2--;
-    }
-    p--;
+let merge = function (nums1, m, nums2, n) {
+  for (let i = m, j = 0; j < n; i++, j++) {
+    nums1[i] = nums2[j];
   }
-
-  // Copy remaining elements from nums2 to merged
-  while (p2 >= 0) {
-    merged[p] = nums2[p2];
-    p2--;
-    p--;
-  }
-
-  // Copy merged elements back to nums1
-  for (let i = 0; i < m + n; i++) {
-    nums1[i] = merged[i];
-  }
-}
-
-// Test cases
-const nums1_1 = [1, 2, 3, 0, 0, 0];
-const m_1 = 3;
-const nums2_1 = [2, 5, 6];
-const n_1 = 3;
-merge(nums1_1, m_1, nums2_1, n_1);
-console.log(nums1_1); // Output: [1, 2, 2, 3, 5, 6]
-
-const nums1_2 = [1];
-const m_2 = 1;
-const nums2_2 = [];
-const n_2 = 0;
-merge(nums1_2, m_2, nums2_2, n_2);
-console.log(nums1_2); // Output: [1]
-
-const nums1_3 = [0];
-const m_3 = 0;
-const nums2_3 = [1];
-const n_3 = 1;
-merge(nums1_3, m_3, nums2_3, n_3);
-console.log(nums1_3); // Output: [1]
+  nums1.sort((a, b) => a - b);
+};
